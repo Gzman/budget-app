@@ -1,10 +1,17 @@
-import { useState } from "react"
+const useBalance = (expenses, budget) => {
+    const calculateTotalCost = () => {
+        return expenses.reduce((total, expense) => {
+            return total + expense.value;
+        }, 0);
+    }
 
-const useBalance = () => {
-    const [balance, setBalance] = useState(0);
+    const calculateBalance = () => {
+        return budget - calculateTotalCost();
+    }
 
     return {
-        balance, setBalance,
+        calculateTotalCost,
+        calculateBalance,
     }
 }
 
