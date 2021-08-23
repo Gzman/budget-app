@@ -5,7 +5,7 @@ const BudgetForm = () => {
     return (
         <form id="budget-form" className="form">
             <div className="input">
-                <label for="budget-input">Please enter your Budget</label>
+                <label htmlFor="budget-input">Please enter your Budget</label>
                 <input
                     id="budget-input"
                     type="number"
