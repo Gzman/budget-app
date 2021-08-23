@@ -1,13 +1,15 @@
 
 #budget-form {
-    padding: 0.5rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     border: 0.2rem solid green;
+    color: green;
 }
 
 .input {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }

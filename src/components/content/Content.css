@@ -1,15 +1,48 @@
 .content {
-    padding: 1rem;
+    padding: 1.5rem;
     display: flex;
-    gap: 1rem;
+    justify-content: space-around;
 }
 
 .content-input, .content-output {
+    width: 660px;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
+    font-size: 1.75rem;
 }
 
-.content-input {
-    align-items: stretch;
+.error {
+    font-size: 1rem;
+    color: darkred;
+}
+
+@media (max-width: 1400px) {
+    .header {
+        margin-bottom: 0;
+    }
+    .content {
+        width: auto;
+        flex-direction: column;
+        align-items: center;
+    }
+    .content-input, .content-output {
+        max-width: 700px;
+        font-size: 1.5rem;
+    }
+    .balance-view {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 780px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+        max-width: 700;
+    }
+    .content-input, .content-output {
+        width: auto;
+        font-size: 1.5rem;
+    }
 }

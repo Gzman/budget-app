@@ -49,7 +49,7 @@ const ExpenseForm = ({ addExpense }) => {
     return (
         <form id="expense-form">
             <div className="input">
-                <lablel htmlFor="expense-title-input">Please enter a Expense</lablel>
+                <label htmlFor="expense-title-input">Please enter a Expense</label>
                 {error.isTitleNotSet && <p className="error">You must enter a title</p>}
                 <input
                     id="expense-title-input"

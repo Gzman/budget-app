@@ -1,8 +1,12 @@
 .header {
     padding: 1rem;
+    margin-bottom: 3rem;
     display: flex;
+    justify-content: center;
+    
 }
 
 .logo {
     padding: 0.5rem;
+    border-bottom: 0.3rem solid black;
 }

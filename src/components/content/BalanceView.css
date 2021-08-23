@@ -1,8 +1,9 @@
 
 .balance-view {
+    width: 100%;
     padding: 0.5rem;
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
 }
 
 .budget, .expenses, .balance {
@@ -14,13 +15,16 @@
 }
 
 #budget-output-amount {
+    font-size: 1.5rem;
     color: green;
 }
 
 #expenses-output-amount {
+    font-size: 1.5rem;
     color: darkred;
 }
 
 #balance-output-amount {
+    font-size: 1.5rem;
     color: blue;
 }
