@@ -1,0 +1,15 @@
+.content {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.content-input, .content-output {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.content-input {
+    align-items: stretch;
+}

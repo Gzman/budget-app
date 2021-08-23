@@ -1,0 +1,26 @@
+
+.balance-view {
+    padding: 0.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.budget, .expenses, .balance {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+#budget-output-amount {
+    color: green;
+}
+
+#expenses-output-amount {
+    color: darkred;
+}
+
+#balance-output-amount {
+    color: blue;
+}

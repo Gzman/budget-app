@@ -1,0 +1,16 @@
+.expenses-view {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.expenses-view-header, .expense-item {
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: 45% 35% auto auto;
+    gap: 0.5rem;
+}
+
+.expense-item {
+    color: darkred;
+}

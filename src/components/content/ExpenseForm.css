@@ -1,0 +1,13 @@
+
+#expense-form {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 0.2rem solid darkred;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
