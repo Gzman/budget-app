@@ -1,47 +1,25 @@
 import React, { useState } from "react"
+import { useExpenseFormValidation } from "../../hooks/useExpenseFormValidation"
 import "./ExpenseForm.css"
 
-const ExpenseForm = ({ addExpense }) => {
-    const [expenseTitle, setExpenseTitle] = useState("");
-    const [expenseValue, setExpenseValue] = useState("");
-    const [error, setError] = useState({
-        isTitleNotSet: false,
-        amountIsNotSet: false,
-    });
-
-    const validate = () => {
-        const isTitleNotSet = expenseTitle.length === 0;
-        const amountIsNotSet = expenseValue.length === 0;
-        setError({
-            isTitleNotSet,
-            amountIsNotSet,
-        });
-        return !isTitleNotSet && !amountIsNotSet;
-    }
-
-    const handleTitle = (e) => {
-        validate();
-        setExpenseTitle(e.target.value);
-    }
-
-    const handleAmount = (e) => {
-        validate();
-        setExpenseValue(e.target.value);
-    }
+const ExpenseForm = ({ addExpense, editExpense, expenseToEdit }) => {
+    const [expenseTitle, setExpenseTitle] = useState(expenseToEdit ? expenseToEdit.title : "");
+    const [expenseValue, setExpenseValue] = useState(expenseToEdit ? expenseToEdit.value : "");
+    const { errors, resetErrors, validate } = useExpenseFormValidation(expenseTitle, expenseValue);
 
     const reset = () => {
         setExpenseTitle("");
         setExpenseValue("");
-        setError({
-            isTitleNotSet: false,
-            amountIsNotSet: false,
-        });
+        resetErrors();
     }
 
     const submit = (e) => {
         e.preventDefault();
-        if (validate()) {
-            addExpense(expenseTitle, parseFloat(expenseValue));
+        const isValid = validate();
+        if (isValid) {
+            expenseToEdit
+                ? editExpense(expenseTitle, parseFloat(expenseValue))
+                : addExpense(expenseTitle, parseFloat(expenseValue));
             reset();
         }
     }
@@ -50,27 +28,27 @@ const ExpenseForm = ({ addExpense }) => {
         <form id="expense-form">
             <div className="input">
                 <label htmlFor="expense-title-input">Please enter a Expense</label>
-                {error.isTitleNotSet && <p className="error">You must enter a title</p>}
+                {errors.expenseTitleNotSet && <p className="error">{errors.expenseTitleNotSet}</p>}
                 <input
                     id="expense-title-input"
                     type="text"
-                    onChange={handleTitle}
+                    onChange={(e) => setExpenseTitle(e.target.value)}
                     value={expenseTitle}
                     minLength="1"
                 />
             </div>
             <div className="input">
                 <label htmlFor="expense-amount-input">Please enter the Expense amount</label>
-                {error.amountIsNotSet && <p className="error">Enter a Expense amount</p>}
+                {errors.expenseValueNotSet && <p className="errors">{errors.expenseValueNotSet}</p>}
                 <input
                     id="expense-amount-input"
                     type="number"
-                    onChange={handleAmount}
+                    onChange={(e) => setExpenseValue(e.target.value)}
                     value={expenseValue}
                 />
             </div>
             <div className="submit">
-                <button type="submit" onClick={submit}>Add Expense</button>
+                <button type="submit" onClick={submit}>{expenseToEdit ? "Save changes" : "Add Expense"}</button>
             </div>
         </form>
     )

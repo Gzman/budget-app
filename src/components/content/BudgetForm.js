@@ -1,40 +1,21 @@
 import React, { useState } from "react"
+import { useBudgetFormValidation } from "../../hooks/useBudgetFormValidation"
 import "./BudgetForm.css"
 
 const BudgetForm = ({ setBudget }) => {
     const [budgetValue, setBudgetValue] = useState("");
-    const [error, setError] = useState({
-        isNegative: false,
-        isNotSet: false,
-    });
-
-    const validate = () => {
-        const isNegative = budgetValue < 0;
-        const isNotSet = budgetValue === "";
-        setError({
-            isNegative,
-            isNotSet,
-        });
-        return !isNegative && !isNotSet;
-    }
+    const { errors, resetErrors, validate } = useBudgetFormValidation(budgetValue);
 
     const reset = () => {
         setBudgetValue("");
-        setError({
-            isNegative: false,
-            isNotSet: false,
-        });
-    }
-
-    const handleOnChange = (e) => {
-        validate();
-        setBudgetValue(e.target.value);
+        resetErrors();
     }
 
     const submit = (e) => {
         e.preventDefault();
-        if (validate()) {
-            setBudget(budgetValue);
+        const isValid = validate();
+        if (isValid) {
+            setBudget(parseFloat(budgetValue));
             reset();
         }
     }
@@ -43,12 +24,12 @@ const BudgetForm = ({ setBudget }) => {
         <form id="budget-form" className="form">
             <div className="input">
                 <label htmlFor="budget-input">Please enter your Budget</label>
-                {error.isNegative && <p className="error">Budget can't be negative</p>}
-                {error.isNotSet && <p className="error">Enter a Budget</p>}
+                {errors.budgetNotSet && <p className="error">{errors.budgetNotSet}</p>}
+                {errors.budgetNegative && <p className="error">{errors.budgetNegative}</p>}
                 <input
                     id="budget-input"
                     type="number"
-                    onChange={handleOnChange}
+                    onChange={(e) => setBudgetValue(e.target.value)}
                     value={budgetValue}
                 />
             </div>
