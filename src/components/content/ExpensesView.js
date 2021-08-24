@@ -2,13 +2,12 @@ import React, { useState } from "react"
 import { Expense } from "./Expense"
 import { SortSelect } from "./SortSelect"
 import { Modal } from "../modal/Modal"
+import { ExpenseForm } from "./forms/ExpenseForm"
 import "./ExpensesView.css"
-import { ExpenseForm } from "./ExpenseForm"
 
 const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterTitle, sortAfterValue }) => {
     const [expenseToEdit, setExpenseToEdit] = useState(null);
     const [renderModal, setRenderModal] = useState(false);
-
     return (
         <div className="expenses-view">
             <div className="expenses-view-header">

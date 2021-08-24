@@ -1,6 +1,6 @@
 import React from "react"
-import { BudgetForm } from "./BudgetForm"
-import { ExpenseForm } from "./ExpenseForm"
+import { BudgetForm } from "./forms/BudgetForm"
+import { ExpenseForm } from "./forms/ExpenseForm"
 import { BalanceView } from "./BalanceView"
 import { ExpensesView } from "./ExpensesView"
 import { useExpenses } from "../../hooks/useExpenses"
