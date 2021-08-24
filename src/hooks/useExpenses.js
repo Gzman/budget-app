@@ -26,11 +26,21 @@ const useExpenses = () => {
         );
     }
 
+    const sortAfterTitle = () => {
+        setExpenses([...expenses].sort((a, b) => a.title.localeCompare(b.title)));
+    }
+
+    const sortAfterValue = () => {
+        setExpenses([...expenses].sort((a, b) => a.value - b.value));
+    }
+
     return {
         expenses,
         addExpense,
         editExpense,
         removeExpense,
+        sortAfterTitle,
+        sortAfterValue,
     }
 }
 

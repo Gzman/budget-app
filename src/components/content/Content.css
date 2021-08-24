@@ -27,8 +27,8 @@
         align-items: center;
     }
     .content-input, .content-output {
-        max-width: 700px;
-        font-size: 1.5rem;
+        max-width: auto;
+        font-size: 1rem;
     }
     .balance-view {
         max-width: 100%;
@@ -43,6 +43,6 @@
     }
     .content-input, .content-output {
         width: auto;
-        font-size: 1.5rem;
+        font-size: 0.9rem;
     }
 }

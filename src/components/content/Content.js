@@ -8,7 +8,15 @@ import { useBudget } from "../../hooks/useBudget"
 import "./Content.css"
 
 const Content = () => {
-    const { expenses, addExpense, editExpense, removeExpense } = useExpenses();
+    const {
+        expenses,
+        addExpense,
+        editExpense,
+        removeExpense,
+        sortAfterTitle,
+        sortAfterValue
+    } = useExpenses();
+
     const { budget, setBudget } = useBudget();
     return (
         <div className="content">
@@ -18,7 +26,13 @@ const Content = () => {
             </div>
             <div className="content-output">
                 <BalanceView budget={budget} expenses={expenses} />
-                <ExpensesView expenses={expenses} editExpense={editExpense} removeExpense={removeExpense} />
+                <ExpensesView
+                    expenses={expenses}
+                    editExpense={editExpense}
+                    removeExpense={removeExpense}
+                    sortAfterTitle={sortAfterTitle}
+                    sortAfterValue={sortAfterValue}
+                />
             </div>
         </div>
     )

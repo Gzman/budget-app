@@ -1,5 +1,6 @@
 import React from "react"
-import { TiEdit, TiDelete } from "react-icons/ti"
+import { TiEdit, TiDelete, TiCancel } from "react-icons/ti"
+import { BsBoxArrowInLeft } from "react-icons/bs" // cancel button or maybe reuse ExpenseForm in a modal?
 import "./ExpensesView.css"
 
 const Expense = ({ title, value, editExpense, removeExpense }) => {
@@ -14,3 +15,15 @@ const Expense = ({ title, value, editExpense, removeExpense }) => {
 }
 
 export { Expense }
+
+/*
+        console.log("Was habe ich jetzt, wieder getan?");
+        const calculateTotalCost = (expenses) => {
+            return expenses.reduce((total, expense) => {
+                return total + expense.value;
+            }, 0);
+        }
+
+        Schon wieder wird versucht mir Schuld zuzufügen. Schon wieder
+                
+*/
