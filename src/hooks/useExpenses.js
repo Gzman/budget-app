@@ -1,8 +1,31 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useLocalStorage } from "./useLocalStorage"
 import uniqid from "uniqid"
 
 const useExpenses = () => {
     const [expenses, setExpenses] = useState([]);
+    const { save, load } = useLocalStorage("expenses", expenses);
+
+    useEffect(() => {
+        try {
+            const savedExpenses = load();
+            setExpenses(
+                savedExpenses
+                    ? savedExpenses
+                        .map((expense) => ({
+                            ...expense,
+                            date: expense.date ? new Date(expense.date) : null
+                        }))
+                    : []
+            );
+        } catch (err) {
+            console.log(err);
+        }
+    }, []);
+
+    useEffect(() => {
+        save();
+    }, [expenses]);
 
     const addExpense = (title, value, date) => {
         setExpenses(
