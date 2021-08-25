@@ -13,6 +13,7 @@ const Content = () => {
         addExpense,
         editExpense,
         removeExpense,
+        sortAfterInsertion,
         sortAfterTitle,
         sortAfterValue
     } = useExpenses();
@@ -30,6 +31,7 @@ const Content = () => {
                     expenses={expenses}
                     editExpense={editExpense}
                     removeExpense={removeExpense}
+                    sortAfterInsertion={sortAfterInsertion}
                     sortAfterTitle={sortAfterTitle}
                     sortAfterValue={sortAfterValue}
                 />

@@ -5,7 +5,7 @@ import { Modal } from "../modal/Modal"
 import { ExpenseForm } from "./forms/ExpenseForm"
 import "./ExpensesView.css"
 
-const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterTitle, sortAfterValue }) => {
+const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterInsertion, sortAfterTitle, sortAfterValue }) => {
     const [expenseToEdit, setExpenseToEdit] = useState(null);
     const [renderModal, setRenderModal] = useState(false);
     return (
@@ -14,6 +14,7 @@ const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterTitle, so
                 <h3>Expense</h3>
                 <h3>Value</h3>
                 <SortSelect
+                    sortAfterInsertion={sortAfterInsertion}
                     sortAfterTitle={sortAfterTitle}
                     sortAfterValue={sortAfterValue}
                 />

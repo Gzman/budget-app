@@ -6,7 +6,7 @@ const useExpenses = () => {
 
     const addExpense = (title, value) => {
         setExpenses(
-            prevExpenses => [...prevExpenses, { id: uniqid(), title, value, }]
+            prevExpenses => [...prevExpenses, { id: uniqid(), title, value, timestamp: Date.now(), }]
         );
     }
 
@@ -26,6 +26,10 @@ const useExpenses = () => {
         );
     }
 
+    const sortAfterInsertion = () => {
+        return setExpenses([...expenses].sort((a, b) => a.timestamp - b.timestamp));
+    }
+
     const sortAfterTitle = () => {
         setExpenses([...expenses].sort((a, b) => a.title.localeCompare(b.title)));
     }
@@ -39,6 +43,7 @@ const useExpenses = () => {
         addExpense,
         editExpense,
         removeExpense,
+        sortAfterInsertion,
         sortAfterTitle,
         sortAfterValue,
     }

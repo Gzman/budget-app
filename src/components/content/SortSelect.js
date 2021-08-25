@@ -1,7 +1,7 @@
 
-const SortSelect = ({ sortAfterTitle, sortAfterValue }) => {
+const SortSelect = ({ sortAfterInsertion, sortAfterTitle, sortAfterValue }) => {
     const options = {
-        "...": null,
+        "...": sortAfterInsertion,
         "Title": sortAfterTitle,
         "Value": sortAfterValue,
     };
@@ -9,7 +9,9 @@ const SortSelect = ({ sortAfterTitle, sortAfterValue }) => {
     return (
         <select
             className="sort-expense-select"
-            onChange={(e) => options[e.target.value]?.call()}
+            onChange={(e) => {
+                options[e.target.value]?.call();
+            }}
         >
             {
                 Object.keys(options).map((option) =>
