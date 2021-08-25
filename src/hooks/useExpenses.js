@@ -26,16 +26,31 @@ const useExpenses = () => {
         );
     }
 
-    const sortAfterInsertion = () => {
-        return setExpenses([...expenses].sort((a, b) => a.timestamp - b.timestamp));
+    const sortAfterInsertion = (asc = true) => {
+        return setExpenses(
+            expenses =>
+                asc
+                    ? [...expenses].sort((a, b) => a.timestamp - b.timestamp)
+                    : [...expenses].sort((a, b) => b.timestamp - a.timestamp)
+        )
     }
 
-    const sortAfterTitle = () => {
-        setExpenses([...expenses].sort((a, b) => a.title.localeCompare(b.title)));
+    const sortAfterTitle = (asc = true) => {
+        setExpenses(
+            expenses =>
+                asc
+                    ? [...expenses].sort((a, b) => a.title.localeCompare(b.title))
+                    : [...expenses].sort((a, b) => b.title.localeCompare(a.title))
+        );
     }
 
-    const sortAfterValue = () => {
-        setExpenses([...expenses].sort((a, b) => a.value - b.value));
+    const sortAfterValue = (asc = true) => {
+        setExpenses(
+            expenses =>
+                asc
+                    ? [...expenses].sort((a, b) => a.value - b.value)
+                    : [...expenses].sort((a, b) => b.value - a.value)
+        );
     }
 
     return {
