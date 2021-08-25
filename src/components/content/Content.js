@@ -15,7 +15,8 @@ const Content = () => {
         removeExpense,
         sortAfterInsertion,
         sortAfterTitle,
-        sortAfterValue
+        sortAfterValue,
+        sortAfterDate,
     } = useExpenses();
 
     const { budget, setBudget } = useBudget();
@@ -34,6 +35,7 @@ const Content = () => {
                     sortAfterInsertion={sortAfterInsertion}
                     sortAfterTitle={sortAfterTitle}
                     sortAfterValue={sortAfterValue}
+                    sortAfterDate={sortAfterDate}
                 />
             </div>
         </div>

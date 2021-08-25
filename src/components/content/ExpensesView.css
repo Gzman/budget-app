@@ -1,17 +1,28 @@
 .expenses-view {
-    width: 100%;
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.expenses-view-header, .expense-item {
-    padding: 0.5rem;
-    display: grid;
-    grid-template-columns: 45% 35% auto auto;
-    gap: 0.5rem;
+.expenses-view-header {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 30% 20% 30% max-content;
+  gap: 0.5rem;
 }
 
 .expense-item {
-    color: darkred;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 30% 20% 30% max-content max-content;
+  gap: 0.5rem;
+}
+
+.expense-item {
+  color: darkred;
+}
+
+.sort-expense {
+    display: flex;
 }

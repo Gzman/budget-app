@@ -5,7 +5,7 @@ import { Modal } from "../modal/Modal"
 import { ExpenseForm } from "./forms/ExpenseForm"
 import "./ExpensesView.css"
 
-const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterInsertion, sortAfterTitle, sortAfterValue }) => {
+const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterInsertion, sortAfterTitle, sortAfterValue, sortAfterDate }) => {
     const [expenseToEdit, setExpenseToEdit] = useState(null);
     const [renderModal, setRenderModal] = useState(false);
     return (
@@ -13,10 +13,12 @@ const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterInsertion
             <div className="expenses-view-header">
                 <h3>Expense</h3>
                 <h3>Value</h3>
+                <h3>Date</h3>
                 <SortSelect
                     sortAfterInsertion={sortAfterInsertion}
                     sortAfterTitle={sortAfterTitle}
                     sortAfterValue={sortAfterValue}
+                    sortAfterDate={sortAfterDate}
                 />
             </div>
             {
@@ -25,6 +27,7 @@ const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterInsertion
                         key={expense.id}
                         title={expense.title}
                         value={expense.value}
+                        date={expense.date}
                         editExpense={() => {
                             setExpenseToEdit(expense);
                             setRenderModal(true);
@@ -35,7 +38,7 @@ const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterInsertion
             }
             <Modal render={renderModal} close={() => setRenderModal(false)}>
                 <ExpenseForm
-                    editExpense={(title, value) => editExpense(expenseToEdit.id, title, value)}
+                    editExpense={(title, value, date) => editExpense(expenseToEdit.id, title, value, date)}
                     expenseToEdit={expenseToEdit}
                 />
             </Modal>

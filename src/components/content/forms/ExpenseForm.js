@@ -1,15 +1,18 @@
 import React, { useState } from "react"
 import { useExpenseFormValidation } from "../../../hooks/useExpenseFormValidation"
+import { format } from "date-fns"
 import "./ExpenseForm.css"
 
 const ExpenseForm = ({ addExpense, editExpense, expenseToEdit }) => {
     const [expenseTitle, setExpenseTitle] = useState(expenseToEdit ? expenseToEdit.title : "");
     const [expenseValue, setExpenseValue] = useState(expenseToEdit ? expenseToEdit.value : "");
+    const [expenseDate, setExpenseDate] = useState(expenseToEdit?.date ? format(expenseToEdit.date, "yyyy-MM-dd") : "");
     const { errors, resetErrors, validate } = useExpenseFormValidation(expenseTitle, expenseValue);
 
     const reset = () => {
         setExpenseTitle("");
         setExpenseValue("");
+        setExpenseDate("");
         resetErrors();
     }
 
@@ -18,8 +21,16 @@ const ExpenseForm = ({ addExpense, editExpense, expenseToEdit }) => {
         const isValid = validate();
         if (isValid) {
             expenseToEdit
-                ? editExpense(expenseTitle, parseFloat(expenseValue))
-                : addExpense(expenseTitle, parseFloat(expenseValue));
+                ? editExpense(
+                    expenseTitle,
+                    parseFloat(expenseValue),
+                    expenseDate !== "" ? new Date(expenseDate) : null
+                )
+                : addExpense(
+                    expenseTitle,
+                    parseFloat(expenseValue),
+                    expenseDate !== "" ? new Date(expenseDate) : null
+                );
             reset();
         }
     }
@@ -45,6 +56,15 @@ const ExpenseForm = ({ addExpense, editExpense, expenseToEdit }) => {
                     type="number"
                     onChange={(e) => setExpenseValue(e.target.value)}
                     value={expenseValue}
+                />
+            </div>
+            <div className="input">
+                <label htmlFor="expense-date-input">Enter a date of the expense</label>
+                <input
+                    id="expense-date-input"
+                    type="date"
+                    onChange={(e) => setExpenseDate(e.target.value)}
+                    value={expenseDate}
                 />
             </div>
             <div className="submit">

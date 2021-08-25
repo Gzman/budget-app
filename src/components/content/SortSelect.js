@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const SortSelect = ({ sortAfterInsertion, sortAfterTitle, sortAfterValue }) => {
+const SortSelect = ({ sortAfterInsertion, sortAfterTitle, sortAfterValue, sortAfterDate }) => {
     const sortDirections = {
         "asc": true,
         "desc": false,
@@ -9,6 +9,7 @@ const SortSelect = ({ sortAfterInsertion, sortAfterTitle, sortAfterValue }) => {
         "...": sortAfterInsertion,
         "Title": sortAfterTitle,
         "Value": sortAfterValue,
+        "Date": sortAfterDate,
     };
     const [isAscending, setIsAscending] = useState(true);
     const [sortKey, setSortKey] = useState(Object.keys(sortFunctions)[0]);
@@ -18,7 +19,7 @@ const SortSelect = ({ sortAfterInsertion, sortAfterTitle, sortAfterValue }) => {
     }, [isAscending, sortKey]);
 
     return (
-        <>
+        <div className="sort-expense">
             <select
                 className="sort-expense-sort-direction"
                 onChange={(e) => setIsAscending(sortDirections[e.target.value])}
@@ -40,7 +41,7 @@ const SortSelect = ({ sortAfterInsertion, sortAfterTitle, sortAfterValue }) => {
                     )
                 }
             </select>
-        </>
+        </div>
     )
 }
 

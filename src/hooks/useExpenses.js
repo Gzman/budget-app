@@ -4,17 +4,26 @@ import uniqid from "uniqid"
 const useExpenses = () => {
     const [expenses, setExpenses] = useState([]);
 
-    const addExpense = (title, value) => {
+    const addExpense = (title, value, date) => {
         setExpenses(
-            prevExpenses => [...prevExpenses, { id: uniqid(), title, value, timestamp: Date.now(), }]
+            prevExpenses => [
+                ...prevExpenses,
+                {
+                    id: uniqid(),
+                    title,
+                    value,
+                    date,
+                    timestamp: Date.now(),
+                }
+            ]
         );
     }
 
-    const editExpense = (id, title, value) => {
+    const editExpense = (id, title, value, date) => {
         setExpenses(
             prevExpenses => prevExpenses
                 .map((expense) => expense.id === id
-                    ? { ...expense, title, value }
+                    ? { ...expense, title, value, date, }
                     : expense)
         );
     }
@@ -53,6 +62,15 @@ const useExpenses = () => {
         );
     }
 
+    const sortAfterDate = (asc = true) => {
+        setExpenses(
+            expenses =>
+                asc
+                    ? [...expenses].sort((a, b) => a.date - b.date)
+                    : [...expenses].sort((a, b) => b.date - a.date)
+        );
+    }
+
     return {
         expenses,
         addExpense,
@@ -61,6 +79,7 @@ const useExpenses = () => {
         sortAfterInsertion,
         sortAfterTitle,
         sortAfterValue,
+        sortAfterDate,
     }
 }
 
