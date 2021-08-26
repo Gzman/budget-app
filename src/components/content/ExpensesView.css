@@ -15,14 +15,28 @@
 .expense-item {
   padding: 0.5rem;
   display: grid;
-  grid-template-columns: 30% 20% 30% max-content max-content;
+  grid-template-columns: 30% 20% 30% max-content;
   gap: 0.5rem;
+  word-wrap: break-word;
+}
+
+.expense-item-actions {
+  display: flex;
+  gap: 1rem;
 }
 
 .expense-item {
   color: darkred;
 }
 
+.expense-item:hover {
+  background-color: whitesmoke;
+}
+
+.expense-item-icon {
+  font-size: 1.75rem;
+}
+
 .sort-expense {
-    display: flex;
+  display: flex;
 }

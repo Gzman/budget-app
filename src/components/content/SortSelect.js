@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+const sortDirections = {
+    "asc": true,
+    "desc": false,
+}
 
 const SortSelect = ({ sortAfterInsertion, sortAfterTitle, sortAfterValue, sortAfterDate }) => {
-    const sortDirections = {
-        "asc": true,
-        "desc": false,
-    }
     const sortFunctions = {
         "...": sortAfterInsertion,
         "Title": sortAfterTitle,
         "Value": sortAfterValue,
         "Date": sortAfterDate,
     };
+
     const [isAscending, setIsAscending] = useState(true);
     const [sortKey, setSortKey] = useState(Object.keys(sortFunctions)[0]);
 
     useEffect(() => {
         sortFunctions[sortKey](isAscending);
-    }, [isAscending, sortKey]);
+    }, [sortKey, isAscending]);
 
     return (
         <div className="sort-expense">

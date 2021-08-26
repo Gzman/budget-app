@@ -3,7 +3,7 @@ import { useExpenseFormValidation } from "../../../hooks/useExpenseFormValidatio
 import { format } from "date-fns"
 import "./ExpenseForm.css"
 
-const ExpenseForm = ({ addExpense, editExpense, expenseToEdit }) => {
+const ExpenseForm = ({ handleOnSubmit, expenseToEdit }) => {
     const [expenseTitle, setExpenseTitle] = useState(expenseToEdit ? expenseToEdit.title : "");
     const [expenseValue, setExpenseValue] = useState(expenseToEdit ? expenseToEdit.value : "");
     const [expenseDate, setExpenseDate] = useState(expenseToEdit?.date ? format(expenseToEdit.date, "yyyy-MM-dd") : "");
@@ -20,17 +20,11 @@ const ExpenseForm = ({ addExpense, editExpense, expenseToEdit }) => {
         e.preventDefault();
         const isValid = validate();
         if (isValid) {
-            expenseToEdit
-                ? editExpense(
-                    expenseTitle,
-                    parseFloat(expenseValue),
-                    expenseDate !== "" ? new Date(expenseDate) : null
-                )
-                : addExpense(
-                    expenseTitle,
-                    parseFloat(expenseValue),
-                    expenseDate !== "" ? new Date(expenseDate) : null
-                );
+            handleOnSubmit(
+                expenseTitle,
+                parseFloat(expenseValue),
+                expenseDate !== "" ? new Date(expenseDate) : null,
+            );
             reset();
         }
     }

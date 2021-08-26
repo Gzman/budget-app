@@ -10,17 +10,17 @@ const BalanceView = ({ budget, expenses }) => {
         <div className="balance-view">
             <div className="budget">
                 <h3 className="budget-label">Budget</h3>
-                <FaMoneyBillAlt fontSize="3.5rem" />
+                <FaMoneyBillAlt fontSize="3rem" />
                 <p id="budget-output-amount">{budget}</p>
             </div>
             <div className="expenses">
                 <h3 className="expenses-label">Expenses</h3>
-                <AiOutlineCreditCard fontSize="3.5rem" />
+                <AiOutlineCreditCard fontSize="3rem" />
                 <p id="expenses-output-amount">{calculateTotalCost()}</p>
             </div>
             <div className="balance">
                 <h3 className="balance-label">Balance</h3>
-                <AiOutlineEuro fontSize="3.5rem" />
+                <AiOutlineEuro fontSize="3rem" />
                 <p id="balance-output-amount">{calculateBalance()}</p>
             </div>
         </div>

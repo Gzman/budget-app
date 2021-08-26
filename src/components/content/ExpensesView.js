@@ -6,8 +6,8 @@ import { ExpenseForm } from "./forms/ExpenseForm"
 import "./ExpensesView.css"
 
 const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterInsertion, sortAfterTitle, sortAfterValue, sortAfterDate }) => {
-    const [expenseToEdit, setExpenseToEdit] = useState(null);
     const [renderModal, setRenderModal] = useState(false);
+    const [expenseToEdit, setExpenseToEdit] = useState(null);
     return (
         <div className="expenses-view">
             <div className="expenses-view-header">
@@ -36,9 +36,12 @@ const ExpensesView = ({ expenses, editExpense, removeExpense, sortAfterInsertion
                     />
                 )
             }
-            <Modal render={renderModal} close={() => setRenderModal(false)}>
+            <Modal title={expenseToEdit?.title} render={renderModal} close={() => setRenderModal(false)}>
                 <ExpenseForm
-                    editExpense={(title, value, date) => editExpense(expenseToEdit.id, title, value, date)}
+                    handleOnSubmit={(title, value, date) => {
+                        editExpense(expenseToEdit.id, title, value, date);
+                        setRenderModal(false);
+                    }}
                     expenseToEdit={expenseToEdit}
                 />
             </Modal>

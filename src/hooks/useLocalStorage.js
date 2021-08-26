@@ -1,7 +1,5 @@
 
-
 const useLocalStorage = (key, data) => {
-
     const save = () => {
         localStorage.setItem(key, JSON.stringify(data));
     }
@@ -14,11 +12,11 @@ const useLocalStorage = (key, data) => {
         localStorage.clear();
     }
 
-   return {
-       save,
-       load,
-       clear,
-   }
+    return {
+        save,
+        load,
+        clear,
+    }
 }
 
 export { useLocalStorage }

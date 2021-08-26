@@ -1,6 +1,6 @@
 
 #budget-form {
-    padding: 1rem;
+    padding: 1rem 1.25rem 1rem 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
